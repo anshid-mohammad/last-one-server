@@ -8,7 +8,7 @@ const { s3, upload, randomFileName, sharp } = require('../utils/s3Clinet');
 
 const home=(req,res)=>{
   try{
-res.send("hello anshid")
+res.send("hello last one")
   }catch (error) {
     console.error("Signup error:", error);
     res.status(500).json({ message: "An unexpected error occurred" });
