@@ -114,11 +114,16 @@ const createAdmin =require("./CreateAdmin/admin")
 const app = express();
 const server = http.createServer(app);
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }))
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true,
+    origin:"https://master.d37rsas8lcxh5s.amplifyapp.com", 
+    credentials: true, 
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed request methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    exposedHeaders: ["Content-Length", "Content-Type", "Authorization"], // ✅ Expose headers properly
+
   })
 );
 createAdmin()
@@ -150,7 +155,7 @@ app.use((err, req, res, next) => {
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin:"https://master.d37rsas8lcxh5s.amplifyapp.com",
     credentials: true,
   },
 });

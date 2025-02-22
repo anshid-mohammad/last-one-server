@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { userSignup,userLogin, getAllUser, addUserImage, updateProfile, updateStudentId, getuserById } = require("../controllers/userController");
+const { userSignup,userLogin, getAllUser, addUserImage, updateProfile, updateStudentId, getuserById,home } = require("../controllers/userController");
 const {mentorLogin,mentorSignup, getAllVendor, updateProfileVentor, addVentorImage, addStudentIdInMentorStore}=require("../controllers/mentorControllers")
 const multer = require('multer');
 
 const upload = multer({ storage: multer.memoryStorage() }); 
 // Route for user signup
+router.get("/",home);
 router.post("/signup", userSignup);
 router.post("/login", userLogin);
 router.post("/mentor-login",mentorLogin);
